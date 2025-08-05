@@ -1,5 +1,5 @@
 import "@/styles/globals.css";
-import Navbar from "./components/Navbar";
+import Navbar from "../components/Navbar";
 import { Box } from "@mui/material";
 
 export default function App({ Component, pageProps }) {

@@ -12,12 +12,19 @@ import {
   Button,
   Box,
 } from '@mui/material';
+import { useRouter } from 'next/router';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const toggleDrawer = () => setOpen(!open);
+  const router = useRouter()
 
   const menuItems = ['Services','Pricing', 'About Us', 'Contact'];
+  const menuURLs = ['services','pricing', 'about', 'contact'];
+
+  const handleClick = (indexProps)=>{
+    router.push(menuURLs[indexProps])
+  }
 
   return (
     <>
@@ -25,7 +32,7 @@ const Navbar = () => {
         <Box
           sx={{
             width: '100%',
-            px: 2,
+            // px: 2,
             mx: 'auto',
             '@media (min-width: 900px)': {
               maxWidth: '80%',
@@ -53,8 +60,8 @@ const Navbar = () => {
 
             {/* Desktop Menu */}
             <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 3, alignItems: 'center' }}>
-              {menuItems.map((item) => (
-                <Button key={item} sx={{ textTransform: 'none' }}>
+              {menuItems.map((item,index) => (
+                <Button key={index} sx={{ textTransform: 'none' }} onClick={()=>handleClick(index)}>
                   {item}
                 </Button>
               ))}
