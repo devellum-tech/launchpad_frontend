@@ -17,14 +17,15 @@ import { useRouter } from 'next/router';
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const toggleDrawer = () => setOpen(!open);
-  const router = useRouter()
+  const router = useRouter();
 
-  const menuItems = ['Services','Pricing', 'About Us', 'Contact'];
-  const menuURLs = ['services','pricing', 'about', 'contact'];
+  const menuItems = ['Services', 'Pricing', 'About Us', 'Contact'];
+  const menuURLs = ['services', 'pricing', 'about', 'contact'];
 
-  const handleClick = (indexProps)=>{
-    router.push(menuURLs[indexProps])
-  }
+  const handleClick = (indexProps) => {
+    router.push(menuURLs[indexProps]);
+    setOpen(false); // close drawer on click (for mobile)
+  };
 
   return (
     <>
@@ -32,7 +33,7 @@ const Navbar = () => {
         <Box
           sx={{
             width: '100%',
-            // px: 2,
+            p:"10px 0px 10px 0px",
             mx: 'auto',
             '@media (min-width: 900px)': {
               maxWidth: '80%',
@@ -44,8 +45,8 @@ const Navbar = () => {
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <Box
                 sx={{
-                  width: 35,
-                  height: 35,
+                  width: 40,
+                  height: 40,
                   borderRadius: '50%',
                   backgroundColor: 'black',
                   display: 'flex',
@@ -53,15 +54,27 @@ const Navbar = () => {
                   justifyContent: 'center',
                 }}
               >
-                <Typography fontWeight="bold" color="white">D</Typography>
+                <Typography fontWeight="bold" fontSize="1.25rem" color="white">
+                  D
+                </Typography>
               </Box>
-              <Typography fontWeight="bold">Devellum</Typography>
+              <Typography fontWeight="bold" fontSize="1.25rem">
+                Devellum
+              </Typography>
             </Box>
 
             {/* Desktop Menu */}
             <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 3, alignItems: 'center' }}>
-              {menuItems.map((item,index) => (
-                <Button key={index} sx={{ textTransform: 'none' }} onClick={()=>handleClick(index)}>
+              {menuItems.map((item, index) => (
+                <Button
+                  key={index}
+                  onClick={() => handleClick(index)}
+                  sx={{
+                    textTransform: 'none',
+                    fontSize: '1.05rem',
+                    fontWeight: 500,
+                  }}
+                >
                   {item}
                 </Button>
               ))}
@@ -72,6 +85,12 @@ const Navbar = () => {
                   borderRadius: '30px',
                   color: '#fff',
                   textTransform: 'none',
+                  fontSize: '1.05rem',
+                  px: 3,
+                  py: 1,
+                  '&:hover': {
+                    backgroundColor: '#222',
+                  },
                 }}
               >
                 Get Started →
@@ -81,7 +100,10 @@ const Navbar = () => {
             {/* Mobile Menu Icon */}
             <IconButton
               edge="end"
-              sx={{ display: { xs: 'block', md: 'none' }, fontSize: '20px' }}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+                fontSize: '24px',
+              }}
               onClick={toggleDrawer}
             >
               ☰
@@ -90,19 +112,24 @@ const Navbar = () => {
         </Box>
       </AppBar>
 
-      {/* Drawer for mobile */}
+      {/* Mobile Drawer */}
       <Drawer anchor="right" open={open} onClose={toggleDrawer}>
         <Box sx={{ width: 250 }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', p: 2 }}>
-            <Typography fontWeight="bold">Devellum</Typography>
-            <Button onClick={toggleDrawer} sx={{ fontSize: '18px', minWidth: 'auto' }}>
+            <Typography fontWeight="bold" fontSize="1.2rem">
+              Devellum
+            </Typography>
+            <Button onClick={toggleDrawer} sx={{ fontSize: '20px', minWidth: 'auto' }}>
               ✕
             </Button>
           </Box>
           <List>
-            {menuItems.map((text) => (
-              <ListItem button key={text}>
-                <ListItemText primary={text} />
+            {menuItems.map((text, index) => (
+              <ListItem button key={text} onClick={() => handleClick(index)}>
+                <ListItemText
+                  primary={text}
+                  primaryTypographyProps={{ fontSize: '1.05rem', fontWeight: 500 }}
+                />
               </ListItem>
             ))}
             <ListItem>
@@ -114,6 +141,12 @@ const Navbar = () => {
                   borderRadius: '30px',
                   color: '#fff',
                   textTransform: 'none',
+                  fontSize: '1.05rem',
+                  px: 3,
+                  py: 1,
+                  '&:hover': {
+                    backgroundColor: '#222',
+                  },
                 }}
               >
                 Get Started →

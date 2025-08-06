@@ -2,6 +2,9 @@ import Head from "next/head";
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 import styles from "@/styles/Home.module.css";
+import HomeTop from "@/components/HomeTop";
+import HomePointSection from "@/components/HomePointSection";
+import PricingSection from "@/components/PricingSection";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,10 +26,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-<h1 style={{textAlign:"center", fontSize:"70px"}}>
+        <h1 style={{ textAlign: "center", fontSize: "70px" }}>
+          Welcome to Devellum
+        </h1>
 
-     Welcome to Devellum
-</h1>
+        <HomeTop />
+
+        <HomePointSection/>
+
+        <PricingSection/>
       </div>
     </>
   );
