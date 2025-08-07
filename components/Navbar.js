@@ -13,14 +13,15 @@ import {
   Box,
 } from '@mui/material';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const toggleDrawer = () => setOpen(!open);
   const router = useRouter();
 
-  const menuItems = ['Services', 'Pricing', 'About Us', 'Contact'];
-  const menuURLs = ['services', 'pricing', 'about', 'contact'];
+  const menuItems = ['Home', 'Services', 'Pricing', 'About Us', 'Contact'];
+  const menuURLs = ['/', 'services', 'pricing', 'about', 'contact'];
 
   const handleClick = (indexProps) => {
     router.push(menuURLs[indexProps]);
@@ -33,7 +34,7 @@ const Navbar = () => {
         <Box
           sx={{
             width: '100%',
-            p:"10px 0px 10px 0px",
+            p: '10px 0px 10px 0px',
             mx: 'auto',
             '@media (min-width: 900px)': {
               maxWidth: '80%',
@@ -59,12 +60,14 @@ const Navbar = () => {
                 </Typography>
               </Box>
               <Typography fontWeight="bold" fontSize="1.25rem">
-                Devellum
+                <Link href={'/'}>Devellum</Link>
               </Typography>
             </Box>
 
             {/* Desktop Menu */}
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 3, alignItems: 'center' }}>
+            <Box
+              sx={{ display: { xs: 'none', md: 'flex' }, gap: 3, alignItems: 'center' }}
+            >
               {menuItems.map((item, index) => (
                 <Button
                   key={index}
@@ -128,7 +131,11 @@ const Navbar = () => {
               <ListItem button key={text} onClick={() => handleClick(index)}>
                 <ListItemText
                   primary={text}
-                  primaryTypographyProps={{ fontSize: '1.05rem', fontWeight: 500 }}
+                  slotProps={{
+                    primary: {
+                      typographyProps: { fontSize: '1.05rem', fontWeight: 500 },
+                    },
+                  }}
                 />
               </ListItem>
             ))}
@@ -160,3 +167,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
