@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Grid, Typography, Link, TextField, Button } from '@mui/material';
+import { Box, Grid, Typography, Link } from '@mui/material';
 
 const Footer = () => {
   return (
@@ -13,31 +13,31 @@ const Footer = () => {
       }}
     >
       <Grid container spacing={4}>
-
         {/* Logo & Description */}
         <Grid item xs={12} md={3}>
           <Box display="flex" alignItems="center" mb={2}>
-           <Box
-                           sx={{
-                             width: 40,
-                             height: 40,
-                             borderRadius: '50%',
-                             backgroundColor: 'black',
-                             display: 'flex',
-                             alignItems: 'center',
-                             justifyContent: 'center',
-                           }}
-                         >
-                           <Typography fontWeight="bold" fontSize="1.25rem" color="white">
-                             D
-                           </Typography>
-                         </Box>
+            <Box
+              sx={{
+                width: 40,
+                height: 40,
+                borderRadius: '50%',
+                backgroundColor: 'black',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Typography fontWeight="bold" fontSize="1.25rem" color="white">
+                D
+              </Typography>
+            </Box>
             <Typography variant="h6" fontWeight="bold" ml={1}>
               Devellum
             </Typography>
           </Box>
           <Typography variant="body2" color="text.secondary">
-            Securing Your Digital World: Your Trusted Partner in Data Protection with Cutting Edge Solutions for Data Security.
+            Securing Your Digital World: Your Trusted Partner in Data Protection with
+            Cutting Edge Solutions for Data Security.
           </Typography>
         </Grid>
 
@@ -47,8 +47,12 @@ const Footer = () => {
             Resources
           </Typography>
           <Box display="flex" flexDirection="column" gap={1}>
-            <Link href="#" underline="hover" color="text.primary">Service</Link>
-            <Link href="#" underline="hover" color="text.primary">Pricing</Link>
+            <Link href="#" underline="hover" color="text.primary">
+              Service
+            </Link>
+            <Link href="#" underline="hover" color="text.primary">
+              Pricing
+            </Link>
             {/* <Link href="#" underline="hover" color="text.primary">Blog</Link> */}
           </Box>
         </Grid>
@@ -59,9 +63,13 @@ const Footer = () => {
             Quick Info
           </Typography>
           <Box display="flex" flexDirection="column" gap={1}>
-            <Link href="#" underline="hover" color="text.primary">About Us</Link>
+            <Link href="#" underline="hover" color="text.primary">
+              About Us
+            </Link>
             {/* <Link href="#" underline="hover" color="text.primary">Privacy Policy</Link> */}
-            <Link href="#" underline="hover" color="text.primary">Contact Us</Link>
+            <Link href="#" underline="hover" color="text.primary">
+              Contact Us
+            </Link>
           </Box>
         </Grid>
 
@@ -123,3 +131,4 @@ const Footer = () => {
 };
 
 export default Footer;
+
