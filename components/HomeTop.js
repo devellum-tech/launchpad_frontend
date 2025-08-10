@@ -20,22 +20,23 @@ const HomeTop = () => {
           mb: 2,
         }}
       >
-        Your Trusted Partner in<br />
-        Comprehensive Web Security
+        Transforming Ideas into Scalable,
+        <br /> High-Performance Software
       </Typography>
 
       <Typography
         variant="subtitle1"
         sx={{
-          maxWidth: 800,
+          maxWidth: 1000,
           mx: 'auto',
           fontSize: { xs: '1rem', md: '1.25rem' },
           color: 'text.secondary',
           mb: 4,
         }}
       >
-        Securing Your Digital World: Your Trusted Partner in Data Protection with
-        Cutting-Edge Solutions for Comprehensive Data Security.
+        We provide <b>end-to-end software development services</b> — from intuitive
+        frontend interfaces to robust backend systems, secure databases, and efficient
+        DevOps pipelines.
       </Typography>
 
       <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent="center">
@@ -54,7 +55,7 @@ const HomeTop = () => {
             },
           }}
         >
-          Get Started →
+          Get a Free Consultation →
         </Button>
         <Button
           variant="outlined"
@@ -66,7 +67,7 @@ const HomeTop = () => {
             fontSize: '1rem',
           }}
         >
-          Learn More
+          View Our Work
         </Button>
       </Stack>
     </Box>
@@ -74,3 +75,4 @@ const HomeTop = () => {
 };
 
 export default HomeTop;
+

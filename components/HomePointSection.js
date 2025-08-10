@@ -1,104 +1,160 @@
-import React from 'react';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography, Button, Fade } from '@mui/material';
 
 const HomePointSection = () => {
   const points = [
-    'Our platform ensures that all sensitive data is encrypted both during transmission and while stored.',
-    'Implement role-based access controls (RBAC) and multi-factor authentication (MFA).',
-    'Regularly audit user access to sensitive information and systems to ensure compliance with security policies.',
+    {
+      title: 'On-Time Delivery, Every Time',
+      description:
+        'We complete projects before deadlines without compromising quality or performance.',
+    },
+    {
+      title: 'Transparent Development Process',
+      description:
+        'No hidden costs and complete visibility into every stage of design and development.',
+    },
+    {
+      title: 'Professional Progress Tracking',
+      description:
+        'Get regular milestone updates so you always know exactly where your project stands.',
+    },
+    {
+      title: 'Well-Documented Solutions',
+      description:
+        'Clean, maintainable code with detailed documentation for effortless scalability.',
+    },
+    {
+      title: 'End-to-End Development',
+      description:
+        'From UI/UX to backend, database, mobile apps, and DevOps — all under one roof.',
+    },
+    {
+      title: 'Client-Centric Approach',
+      description:
+        'Custom solutions designed for your goals, ensuring satisfaction and long-term growth.',
+    },
   ];
 
   return (
     <Box
       sx={{
         width: '100%',
+        background: 'linear-gradient(175deg, #ffffff, #f8f9fa)',
+        py: { xs: 6, md: 10 },
+        px: 2,
         display: 'flex',
         justifyContent: 'center',
-        py: { xs: 6, md: 10 },
-        px: 2, // mobile padding
       }}
     >
       <Box
         sx={{
           width: '100%',
-          maxWidth: '1200px', // centers content in container
+          maxWidth: '1100px',
           display: 'flex',
           flexDirection: 'column',
           gap: 4,
+          textAlign: { xs: 'center', md: 'left' },
         }}
       >
-        <Typography variant="h4" fontWeight="bold">
-          Delivers an all-encompassing <br />
-          security summary.
+        {/* Title */}
+        <Typography
+          variant="h4"
+          sx={{
+            fontWeight: 'bold',
+            color: '#111',
+            fontSize: { xs: '1.75rem', md: '2.25rem' },
+          }}
+        >
+          Our Promise: Building with Precision, Delivering with Trust
         </Typography>
 
-        <Box display="flex" flexDirection="column" gap={2}>
-          {points.map((text, idx) => (
-            <Box key={idx} display="flex" alignItems="flex-start" gap={1.5}>
+        {/* Points */}
+        <Box display="grid" gridTemplateColumns={{ xs: '1fr', md: '1fr 1fr' }} gap={3}>
+          {points.map((point, idx) => (
+            <Fade in key={idx} style={{ transitionDelay: `${idx * 150}ms` }}>
               <Box
                 sx={{
-                  width: 24,
-                  height: 24,
-                  borderRadius: '50%',
-                  backgroundColor: '#000',
-                  color: '#fff',
-                  fontWeight: 'bold',
                   display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  fontSize: '1rem',
-                  mt: '4px',
+                  alignItems: 'flex-start',
+                  gap: 1.5,
+                  backgroundColor: '#fff',
+                  p: 2,
+                  borderRadius: '12px',
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.05)',
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    transform: 'translateY(-7px)',
+                    boxShadow: '0 6px 24px rgba(0,0,0,0.08)',
+                  },
                 }}
               >
-                ✔️
+                <Box
+                  sx={{
+                    minWidth: 28,
+                    height: 28,
+                    borderRadius: '50%',
+                    backgroundColor: '#d7fe52',
+                    color: '#000',
+                    fontWeight: 'bold',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    fontSize: '1rem',
+                    mt: '3px',
+                  }}
+                >
+                  ✔
+                </Box>
+                <Typography variant="body1" sx={{ fontSize: '1rem', color: '#333' }}>
+                  <strong>{point.title}</strong> — {point.description}
+                </Typography>
               </Box>
-              <Typography variant="body1" fontSize="1rem">
-                {text}
-              </Typography>
-            </Box>
+            </Fade>
           ))}
         </Box>
 
-        <Button
-          sx={{
-            width: 'fit-content',
-            px: 2,
-            py: 1,
-            backgroundColor: '#000',
-            borderRadius: '999px',
-            color: '#fff',
-            fontSize: '1rem',
-            fontWeight: 500,
-            textTransform: 'none',
-            display: 'flex',
-            alignItems: 'center',
-            gap: 1.5,
-            '&:hover': {
-              backgroundColor: '#111',
-            },
-          }}
-        >
-          Get Started
-          <Box
+        {/* CTA */}
+        <Box mt={2}>
+          <Button
             sx={{
-              backgroundColor: '#d7fe52',
-              color: '#000',
-              width: 32,
-              height: 32,
-              borderRadius: '50%',
+              px: 3,
+              py: 1.5,
+              backgroundColor: '#000',
+              borderRadius: '999px',
+              color: '#fff',
+              fontSize: '1rem',
+              fontWeight: 500,
+              textTransform: 'none',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
-              fontWeight: 'bold',
-              fontSize: '1.25rem',
+              gap: 1.5,
+              '&:hover': {
+                backgroundColor: '#111',
+              },
             }}
           >
-            →
-          </Box>
-        </Button>
+            Get Started
+            <Box
+              sx={{
+                backgroundColor: '#d7fe52',
+                color: '#000',
+                width: 32,
+                height: 32,
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontWeight: 'bold',
+                fontSize: '1.25rem',
+              }}
+            >
+              →
+            </Box>
+          </Button>
+        </Box>
       </Box>
     </Box>
   );
 };
 
 export default HomePointSection;
+

@@ -20,8 +20,8 @@ const Navbar = () => {
   const toggleDrawer = () => setOpen(!open);
   const router = useRouter();
 
-  const menuItems = ['Home', 'Services', 'Pricing', 'About Us', 'Contact'];
-  const menuURLs = ['/', 'services', 'pricing', 'about', 'contact'];
+  const menuItems = ['Home', 'Services', 'Works', 'About Us', 'Contact'];
+  const menuURLs = ['/', 'services', 'Works', 'about', 'contact'];
 
   const handleClick = (indexProps) => {
     router.push(menuURLs[indexProps]);

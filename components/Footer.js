@@ -1,131 +1,112 @@
 import React from 'react';
-import { Box, Grid, Typography, Link } from '@mui/material';
+import {
+  Box,
+  Container,
+  Grid,
+  Typography,
+  Link,
+  Stack,
+  Divider,
+  IconButton,
+} from '@mui/material';
+import { Facebook, Twitter, LinkedIn, Instagram } from '@mui/icons-material';
 
 const Footer = () => {
   return (
-    <Box
-      component="footer"
-      sx={{
-        backgroundColor: '#fafafa',
-        px: { xs: 2, sm: 6, md: 10 },
-        py: { xs: 5, md: 8 },
-        mt: 10,
-      }}
-    >
-      <Grid container spacing={4}>
-        {/* Logo & Description */}
-        <Grid item xs={12} md={3}>
-          <Box display="flex" alignItems="center" mb={2}>
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: '50%',
-                backgroundColor: 'black',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <Typography fontWeight="bold" fontSize="1.25rem" color="white">
-                D
-              </Typography>
-            </Box>
-            <Typography variant="h6" fontWeight="bold" ml={1}>
+    <Box sx={{ bgcolor: '#0D1B2A', color: '#fff', pt: 8, pb: 4, mt: 6 }}>
+      <Container maxWidth="lg">
+        <Grid container spacing={6}>
+          {/* Company Info */}
+          <Grid item xs={12} md={4}>
+            <Typography variant="h5" sx={{ fontWeight: 700, color: '#FFD700', mb: 2 }}>
               Devellum
             </Typography>
-          </Box>
-          <Typography variant="body2" color="text.secondary">
-            Securing Your Digital World: Your Trusted Partner in Data Protection with
-            Cutting Edge Solutions for Data Security.
-          </Typography>
+            <Typography variant="body1" sx={{ mb: 2, lineHeight: 1.8 }}>
+              Delivering high-quality web & mobile solutions with transparency and client
+              focus.
+            </Typography>
+            <Typography variant="body2">📧 devellum.tech@gmail.com</Typography>
+            <Typography variant="body2">📞 +91 98765 43210</Typography>
+          </Grid>
+
+          {/* Quick Links */}
+          <Grid item xs={6} md={2}>
+            <Typography variant="h6" sx={{ fontWeight: 600, color: '#FFD700', mb: 2 }}>
+              Links
+            </Typography>
+            <Stack spacing={1}>
+              {['Home', 'Services', 'Works', 'About Us', 'Contact'].map((item, i) => (
+                <Link
+                  key={i}
+                  href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                  underline="none"
+                  sx={{
+                    color: '#ccc',
+                    fontSize: '0.95rem',
+                    '&:hover': { color: '#FFD700' },
+                  }}
+                >
+                  {item}
+                </Link>
+              ))}
+            </Stack>
+          </Grid>
+
+          {/* Why Choose Us */}
+          <Grid item xs={6} md={3}>
+            <Typography variant="h6" sx={{ fontWeight: 600, color: '#FFD700', mb: 2 }}>
+              Why Us
+            </Typography>
+            <Stack spacing={1}>
+              {[
+                'On-time Delivery',
+                'Transparent Pricing',
+                'Professional Tracking',
+                'Documented Development',
+                '24/7 Support',
+              ].map((point, i) => (
+                <Typography key={i} variant="body2" sx={{ color: '#ccc' }}>
+                  ✔ {point}
+                </Typography>
+              ))}
+            </Stack>
+          </Grid>
+
+          {/* Social Links */}
+          <Grid item xs={12} md={3}>
+            <Typography variant="h6" sx={{ fontWeight: 600, color: '#FFD700', mb: 2 }}>
+              Connect
+            </Typography>
+            <Stack direction="row" spacing={1}>
+              {[Facebook, Twitter, LinkedIn, Instagram].map((Icon, i) => (
+                <IconButton
+                  key={i}
+                  size="small"
+                  sx={{
+                    bgcolor: '#1B263B',
+                    color: '#FFD700',
+                    '&:hover': { bgcolor: '#FFD700', color: '#0D1B2A' },
+                  }}
+                >
+                  <Icon fontSize="small" />
+                </IconButton>
+              ))}
+            </Stack>
+          </Grid>
         </Grid>
 
-        {/* Resources */}
-        <Grid item xs={6} md={2}>
-          <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
-            Resources
-          </Typography>
-          <Box display="flex" flexDirection="column" gap={1}>
-            <Link href="#" underline="hover" color="text.primary">
-              Service
-            </Link>
-            <Link href="#" underline="hover" color="text.primary">
-              Pricing
-            </Link>
-            {/* <Link href="#" underline="hover" color="text.primary">Blog</Link> */}
-          </Box>
-        </Grid>
+        {/* Divider */}
+        <Divider sx={{ bgcolor: 'rgba(255,255,255,0.1)', my: 4 }} />
 
-        {/* Quick Info */}
-        <Grid item xs={6} md={2}>
-          <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
-            Quick Info
-          </Typography>
-          <Box display="flex" flexDirection="column" gap={1}>
-            <Link href="#" underline="hover" color="text.primary">
-              About Us
-            </Link>
-            {/* <Link href="#" underline="hover" color="text.primary">Privacy Policy</Link> */}
-            <Link href="#" underline="hover" color="text.primary">
-              Contact Us
-            </Link>
-          </Box>
-        </Grid>
-
-        {/* Newsletter */}
-        {/* <Grid item xs={12} md={5}>
-          <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
-            Subscribe to Our Newsletter!
-          </Typography>
-          <Typography variant="body2" color="text.secondary" mb={2}>
-            Stay Informed with Our Latest Security Insights – Subscribe to Our Newsletter!
-          </Typography>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: { xs: 'column', sm: 'row' },
-              gap: 2,
-              mt: 1,
-            }}
-          >
-            <TextField
-              placeholder="Enter your email"
-              variant="outlined"
-              fullWidth
-              sx={{
-                backgroundColor: 'white',
-                borderRadius: 5,
-              }}
-              InputProps={{
-                sx: { px: 2 },
-              }}
-            />
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: '#E4FB76',
-                color: '#000',
-                borderRadius: '30px',
-                px: 4,
-                fontWeight: 'bold',
-                '&:hover': {
-                  backgroundColor: '#d6f268',
-                },
-              }}
-            >
-              Subscribe
-            </Button>
-          </Box>
-        </Grid> */}
-      </Grid>
-
-      {/* Bottom Text */}
-      <Box mt={6} textAlign="center">
-        <Typography variant="body2" color="text.secondary">
-          Copyright © {new Date().getFullYear()} Fortify. All Rights Reserved
+        {/* Bottom Copyright */}
+        <Typography
+          variant="body2"
+          align="center"
+          sx={{ color: 'grey.500', fontSize: '0.85rem' }}
+        >
+          © {new Date().getFullYear()} Devellum. All rights reserved.
         </Typography>
-      </Box>
+      </Container>
     </Box>
   );
 };
