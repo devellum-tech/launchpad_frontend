@@ -33,12 +33,12 @@ const Navbar = () => {
       <AppBar position="static" color="transparent" elevation={0}>
         <Box
           sx={{
-            width: '100%',
+            width: '86%',
             p: '10px 0px 10px 0px',
             mx: 'auto',
-            '@media (min-width: 900px)': {
-              maxWidth: '80%',
-            },
+            // '@media (min-width: 900px)': {
+            //   maxWidth: '86%',
+            // },
           }}
         >
           <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>

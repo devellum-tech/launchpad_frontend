@@ -7,6 +7,7 @@ function Wrapper({ children }) {
       sx={{
         display: 'flex',
         flexDirection: { xs: 'column', md: 'row' },
+        // flexWrap: { xl: 'wrap' },
         gap: 4,
         justifyContent: 'center',
       }}

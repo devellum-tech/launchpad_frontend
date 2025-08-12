@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }) {
       <Navbar />
       <Box
         sx={{
-          width: '84%',
+          width: '86%',
           mx: 'auto',
           px: 2,
           // '@media (min-width: 900px)': {
