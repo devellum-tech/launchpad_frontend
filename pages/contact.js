@@ -52,12 +52,42 @@ export default function ContactPage() {
   };
 
   const handleChange = (e) => {
-    validate()
+    const { name, value } = e.target;
 
-    console.log(e.target.value, e.target.name, "yes")
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+    // Update form data
+    setFormData((prev) => {
+      const updatedForm = { ...prev, [name]: value };
 
-  }
+      // Validate only this field
+      let tempErrors = { ...errors };
+
+      if (name === "fname") {
+        if (!value.trim()) tempErrors.fname = "First name is required";
+        else delete tempErrors.fname;
+      }
+
+      if (name === "lname") {
+        if (!value.trim()) tempErrors.lname = "Last name is required";
+        else delete tempErrors.lname;
+      }
+
+      if (name === "email") {
+        if (!value.trim()) tempErrors.email = "Email is required";
+        else if (!/\S+@\S+\.\S+/.test(value)) tempErrors.email = "Enter a valid email";
+        else delete tempErrors.email;
+      }
+
+      if (name === "phone") {
+        if (!value.trim()) tempErrors.phone = "Phone is required";
+        else delete tempErrors.phone;
+      }
+
+      setErrors(tempErrors);
+
+      return updatedForm;
+    });
+  };
+
   console.log(formData)
   return (
     <Box sx={{ p: { xs: 2, md: 6 }, backgroundColor: "#fff" }}>
