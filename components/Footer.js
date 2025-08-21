@@ -18,20 +18,26 @@ const Footer = () => {
         <Grid container spacing={6}>
           {/* Company Info */}
           <Grid item xs={12} md={4}>
-            <Typography variant="h5" sx={{ fontWeight: 700, color: '#FFD700', mb: 2 }}>
+            <Typography variant="h5" sx={{ fontWeight: 700, color: '#e9e9e9ff', mb: 2 }}>
               Devellum
             </Typography>
-            <Typography variant="body1" sx={{ mb: 2, lineHeight: 1.8 }}>
+            <Typography variant="body1" sx={{ mb: 2, lineHeight: 1.8, color: '#C0C0C0' }}>
               Delivering high-quality web & mobile solutions with transparency and client
               focus.
             </Typography>
-            <Typography variant="body2">📧 devellum.tech@gmail.com</Typography>
-            <Typography variant="body2">📞 +91 98765 43210</Typography>
+
+            <Typography variant="body1" sx={{ fontWeight: 1000, color: '#C0C0C0', m: 1 }}>
+              📧 devellum.tech@gmail.com
+            </Typography>
+
+            <Typography variant="body1" sx={{ fontWeight: 1000, color: '#C0C0C0' }}>
+              📞 +91 98765 43210
+            </Typography>
           </Grid>
 
           {/* Quick Links */}
           <Grid item xs={6} md={2}>
-            <Typography variant="h6" sx={{ fontWeight: 600, color: '#FFD700', mb: 2 }}>
+            <Typography variant="h6" sx={{ fontWeight: 600, color: '#e9e9e9ff', mb: 2 }}>
               Links
             </Typography>
             <Stack spacing={1}>
@@ -41,9 +47,9 @@ const Footer = () => {
                   href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
                   underline="none"
                   sx={{
-                    color: '#ccc',
+                    color: '#C0C0C0',
                     fontSize: '0.95rem',
-                    '&:hover': { color: '#FFD700' },
+                    '&:hover': { color: '#C0C0C0' },
                   }}
                 >
                   {item}
@@ -54,7 +60,7 @@ const Footer = () => {
 
           {/* Why Choose Us */}
           <Grid item xs={6} md={3}>
-            <Typography variant="h6" sx={{ fontWeight: 600, color: '#FFD700', mb: 2 }}>
+            <Typography variant="h6" sx={{ fontWeight: 600, color: '#e9e9e9ff', mb: 2 }}>
               Why Us
             </Typography>
             <Stack spacing={1}>
@@ -65,7 +71,7 @@ const Footer = () => {
                 'Documented Development',
                 '24/7 Support',
               ].map((point, i) => (
-                <Typography key={i} variant="body2" sx={{ color: '#ccc' }}>
+                <Typography key={i} variant="body2" sx={{ color: '#C0C0C0' }}>
                   ✔ {point}
                 </Typography>
               ))}
@@ -74,7 +80,7 @@ const Footer = () => {
 
           {/* Social Links */}
           <Grid item xs={12} md={3}>
-            <Typography variant="h6" sx={{ fontWeight: 600, color: '#FFD700', mb: 2 }}>
+            <Typography variant="h6" sx={{ fontWeight: 600, color: '#e9e9e9ff', mb: 2 }}>
               Connect
             </Typography>
             <Stack direction="row" spacing={1}>
@@ -84,8 +90,8 @@ const Footer = () => {
                   size="small"
                   sx={{
                     bgcolor: '#1B263B',
-                    color: '#FFD700',
-                    '&:hover': { bgcolor: '#FFD700', color: '#0D1B2A' },
+                    color: '#C0C0C0',
+                    '&:hover': { bgcolor: '#C0C0C0', color: '#0D1B2A' },
                   }}
                 >
                   <Icon fontSize="small" />
