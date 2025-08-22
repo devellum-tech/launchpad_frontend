@@ -106,7 +106,7 @@ export default function About() {
                 item
                 xs={12}
                 md={4} // 3 columns on desktop
-                key={i}
+                key={item.title}
                 sx={{ display: 'flex' }}
               >
                 <Paper

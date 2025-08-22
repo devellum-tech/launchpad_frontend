@@ -43,7 +43,7 @@ const Footer = () => {
             <Stack spacing={1}>
               {['Home', 'Services', 'Works', 'About Us', 'Contact'].map((item, i) => (
                 <Link
-                  key={i}
+                  key={item}
                   href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
                   underline="none"
                   sx={{
@@ -71,7 +71,7 @@ const Footer = () => {
                 'Documented Development',
                 '24/7 Support',
               ].map((point, i) => (
-                <Typography key={i} variant="body2" sx={{ color: '#C0C0C0' }}>
+                <Typography key={point} variant="body2" sx={{ color: '#C0C0C0' }}>
                   ✔ {point}
                 </Typography>
               ))}
@@ -86,7 +86,7 @@ const Footer = () => {
             <Stack direction="row" spacing={1}>
               {[Facebook, Twitter, LinkedIn, Instagram].map((Icon, i) => (
                 <IconButton
-                  key={i}
+                  key={Icon}
                   size="small"
                   sx={{
                     bgcolor: '#1B263B',

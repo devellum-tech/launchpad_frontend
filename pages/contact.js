@@ -1,37 +1,42 @@
-import React, { useState } from "react";
-import { Box, Grid, Typography, TextField, Button, Select, MenuItem, InputLabel, FormControl } from "@mui/material";
+import React, { useState } from 'react';
+import {
+  Box,
+  Grid,
+  Typography,
+  TextField,
+  Button,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+} from '@mui/material';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
-    fname: "",
-    lname: "",
-    email: "",
-    phone: "",
-    compName: "",
-    compURL: "",
-    requirement: "",
-    budget: "",
-    hear: "",
-    msg: ""
-  })
+    fname: '',
+    lname: '',
+    email: '',
+    phone: '',
+    compName: '',
+    compURL: '',
+    requirement: '',
+    budget: '',
+    hear: '',
+    msg: '',
+  });
   const [errors, setErrors] = useState({});
 
   const validate = () => {
     let tempErrors = {};
 
-    if (!formData.fname.trim()) tempErrors.fname = "First name is required";
-    if (!formData.lname.trim()) tempErrors.lname = "Last name is required";
+    if (!formData.fname.trim()) tempErrors.fname = 'First name is required';
+    if (!formData.lname.trim()) tempErrors.lname = 'Last name is required';
     if (!formData.email.trim()) {
-      tempErrors.email = "Email is required";
+      tempErrors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      tempErrors.email = "Enter a valid email";
+      tempErrors.email = 'Enter a valid email';
     }
-    if (!formData.phone.trim()) tempErrors.phone = "Phone is required";
-    // if (!formData.compName.trim()) tempErrors.compName = "Company name is required";
-    // if (!formData.requirement) tempErrors.requirement = "Please select a requirement";
-    // if (!formData.budget) tempErrors.budget = "Please select a budget";
-    // if (!formData.hear) tempErrors.hear = "Please select an option";
-    // if (!formData.msg.trim()) tempErrors.msg = "Message is required";
+    if (!formData.phone.trim()) tempErrors.phone = 'Phone is required';
 
     setErrors(tempErrors);
 
@@ -39,51 +44,40 @@ export default function ContactPage() {
     return Object.keys(tempErrors).length === 0;
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (validate()) {
-      console.log("Form Submitted:", formData);
+      console.log('Form Submitted:', formData);
       // submit API call here
+      // const res =  await
     } else {
-      console.log("Validation failed");
+      console.log('Validation failed');
     }
-
   };
 
   const handleChange = (e) => {
-    validate()
+    validate();
 
-    console.log(e.target.value, e.target.name, "yes")
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-
-  }
-  console.log(formData)
+    console.log(e.target.value, e.target.name, 'yes');
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  console.log(formData);
   return (
-    <Box sx={{ p: { xs: 2, md: 6 }, backgroundColor: "#fff" }}>
+    <Box sx={{ p: { xs: 2, md: 6 }, backgroundColor: '#fff' }}>
       <Grid container spacing={4} alignItems="flex-start" justifyContent="center">
-
         {/* Left Section - Description */}
         <Grid item xs={12} md={4}>
-          <Typography variant="body1" sx={{ color: "green", fontWeight: 500 }}>
+          <Typography variant="body1" sx={{ color: 'green', fontWeight: 500 }}>
             Contact Us
           </Typography>
-          <Typography
-            variant="h3"
-            sx={{ fontWeight: "bold", mt: 1, lineHeight: 1.2 }}
-          >
+          <Typography variant="h3" sx={{ fontWeight: 'bold', mt: 1, lineHeight: 1.2 }}>
             Get in Touch.
           </Typography>
-          <Typography
-            variant="h3"
-            sx={{ fontWeight: "bold", mt: 1, lineHeight: 1.2 }}
-          >
+          <Typography variant="h3" sx={{ fontWeight: 'bold', mt: 1, lineHeight: 1.2 }}>
             Contact Information
           </Typography>
-          <Typography
-            variant="h3"
-            sx={{ fontWeight: "bold", mt: 1, lineHeight: 1.2 }}
-          >
+          <Typography variant="h3" sx={{ fontWeight: 'bold', mt: 1, lineHeight: 1.2 }}>
             and Support.
           </Typography>
           <Box
@@ -91,23 +85,22 @@ export default function ContactPage() {
               maxWidth: 500, // or any size
               p: 2,
               // border: "1px solid",
-              borderColor: "grey.300",
+              borderColor: 'grey.300',
               borderRadius: 2,
             }}
           >
             <Typography
               variant="body1"
               sx={{
-                color: "grey.700",
-                whiteSpace: "normal", // ensures wrapping
-                wordBreak: "break-word", // breaks long words if needed
+                color: 'grey.700',
+                whiteSpace: 'normal', // ensures wrapping
+                wordBreak: 'break-word', // breaks long words if needed
               }}
             >
-              Your Trusted Partner in Data Protection with Cutting-Edge Solutions
-              for Comprehensive Data Security.
+              Your Trusted Partner in Data Protection with Cutting-Edge Solutions for
+              Comprehensive Data Security.
             </Typography>
           </Box>
-
         </Grid>
 
         {/* Right Section - Form */}
@@ -115,13 +108,13 @@ export default function ContactPage() {
           <Box
             component="form"
             sx={{
-              width: "100%",
-              maxWidth: "600px", // allow wider layout for desktop
-              margin: "0 auto",
-              display: "flex",
-              flexDirection: "column",
+              width: '100%',
+              maxWidth: '600px', // allow wider layout for desktop
+              margin: '0 auto',
+              display: 'flex',
+              flexDirection: 'column',
               gap: 2,
-              backgroundColor: "#fafafa",
+              backgroundColor: '#fafafa',
               p: 3,
               borderRadius: 2,
               boxShadow: 1,
@@ -140,7 +133,6 @@ export default function ContactPage() {
                   error={!!errors.fname}
                   helperText={errors.fname}
                 />
-                {/* {!formData?.fname && "please fill the Name"} */}
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -215,10 +207,10 @@ export default function ContactPage() {
                 value={formData.requirement}
                 label="Requirement"
               >
-                <MenuItem value={"General Inquiry"}>General Inquiry</MenuItem>
-                <MenuItem value={"Partnership"}>Partnership</MenuItem>
-                <MenuItem value={"Project Quote"}>Project Quote</MenuItem>
-                <MenuItem value={"Support"}>Support</MenuItem>
+                <MenuItem value={'General Inquiry'}>General Inquiry</MenuItem>
+                <MenuItem value={'Partnership'}>Partnership</MenuItem>
+                <MenuItem value={'Project Quote'}>Project Quote</MenuItem>
+                <MenuItem value={'Support'}>Support</MenuItem>
               </Select>
             </FormControl>
             <FormControl fullWidth>
@@ -231,12 +223,11 @@ export default function ContactPage() {
                 value={formData.budget}
                 label="budget"
               >
-                <MenuItem value={"<1000"}>less than $1,000</MenuItem>
-                <MenuItem value={"1000-5000"}>$1,000 – $5,000</MenuItem>
-                <MenuItem value={"5000+"}>$5,000+</MenuItem>
+                <MenuItem value={'<1000'}>less than $1,000</MenuItem>
+                <MenuItem value={'1000-5000'}>$1,000 – $5,000</MenuItem>
+                <MenuItem value={'5000+'}>$5,000+</MenuItem>
               </Select>
             </FormControl>
-
 
             <FormControl fullWidth>
               <InputLabel id="Hear-about-us">Hear About Us</InputLabel>
@@ -248,10 +239,10 @@ export default function ContactPage() {
                 value={formData.hear}
                 label="Hear About Us"
               >
-                <MenuItem value={"Google"}>Google</MenuItem>
-                <MenuItem value={"Referral"}>Referral</MenuItem>
-                <MenuItem value={"Social Media"}>Social Media</MenuItem>
-                <MenuItem value={"Others"}>Others</MenuItem>
+                <MenuItem value={'Google'}>Google</MenuItem>
+                <MenuItem value={'Referral'}>Referral</MenuItem>
+                <MenuItem value={'Social Media'}>Social Media</MenuItem>
+                <MenuItem value={'Others'}>Others</MenuItem>
               </Select>
             </FormControl>
 
@@ -269,7 +260,7 @@ export default function ContactPage() {
             {/* Submit Button */}
             <Button
               variant="contained"
-              sx={{ mt: 1, backgroundColor: "#1976d2" }}
+              sx={{ mt: 1, backgroundColor: '#1976d2' }}
               size="large"
               onClick={(e) => handleSubmit(e)}
             >
@@ -281,3 +272,4 @@ export default function ContactPage() {
     </Box>
   );
 }
+
