@@ -1,13 +1,13 @@
 'use client';
 import React from 'react';
 import { Box, Typography, Button, Stack } from '@mui/material';
+import Link from 'next/link';
 
 const HomeTop = () => {
   return (
     <Box
       sx={{
         maxWidth: '100%',
-        mx: 'auto',
         textAlign: 'center',
         py: { xs: 8, md: 12 },
       }}
@@ -40,35 +40,39 @@ const HomeTop = () => {
       </Typography>
 
       <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent="center">
-        <Button
-          variant="contained"
-          sx={{
-            backgroundColor: '#000',
-            borderRadius: '30px',
-            color: '#fff',
-            px: 4,
-            py: 1.5,
-            textTransform: 'none',
-            fontSize: '1rem',
-            '&:hover': {
-              backgroundColor: '#222',
-            },
-          }}
-        >
-          Get a Free Consultation →
-        </Button>
-        <Button
-          variant="outlined"
-          sx={{
-            borderRadius: '30px',
-            px: 4,
-            py: 1.5,
-            textTransform: 'none',
-            fontSize: '1rem',
-          }}
-        >
-          View Our Work
-        </Button>
+        <Link href={'/contact'}>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: '#000',
+              borderRadius: '30px',
+              color: '#fff',
+              px: 4,
+              py: 1.5,
+              textTransform: 'none',
+              fontSize: '1rem',
+              '&:hover': {
+                backgroundColor: '#222',
+              },
+            }}
+          >
+            Get a Free Consultation →
+          </Button>
+        </Link>
+        <Link href={'/Works'}>
+          <Button
+            variant="outlined"
+            sx={{
+              borderRadius: '30px',
+              px: 4,
+              py: 1.5,
+              textTransform: 'none',
+              fontSize: '1rem',
+            }}
+          >
+            View Our Work
+          </Button>
+        </Link>
       </Stack>
     </Box>
   );

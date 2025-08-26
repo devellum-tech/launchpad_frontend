@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 278.92 413.87">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        font-family: Quantify-Bold, Quantify;
+        font-size: 388.98px;
+        font-weight: 700;
+      }
+
+      .cls-2 {
+        fill: #add136;
+        font-family: Kulfi-Regular, Kulfi;
+        font-size: 227.49px;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <text class="cls-1" transform="translate(6.63 330.63)"><tspan x="0" y="0">D</tspan></text>
+    <text class="cls-2" transform="translate(133.83 283.59) rotate(-43.8) scale(.93 1)"><tspan x="0" y="0">e</tspan></text>
+  </g>
+</svg>

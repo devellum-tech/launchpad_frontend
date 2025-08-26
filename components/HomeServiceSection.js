@@ -36,7 +36,7 @@ const features = {
 
 const HomeServiceSection = () => {
   return (
-    <Box sx={{ maxWidth: '100%', mx: 'auto', py: 8 }}>
+    <Box sx={{ maxWidth: '100%', py: 8 }}>
       <Typography variant="h4" fontWeight="bold" textAlign="center">
         Our Services
       </Typography>

@@ -8,6 +8,7 @@ import {
   Grid,
   Button,
 } from '@mui/material';
+import Link from 'next/link';
 
 const projects = [
   {
@@ -55,6 +56,7 @@ export default function WorkPage() {
         background: 'linear-gradient(135deg, #f7f9fc, #e8edf3)',
         color: '#333',
         py: 8,
+        width: '100%',
       }}
     >
       {/* Hero Section */}
@@ -137,20 +139,22 @@ export default function WorkPage() {
         <Typography variant="h5" fontWeight="bold">
           Let’s Build Something Amazing Together
         </Typography>
-        <Button
-          variant="contained"
-          sx={{
-            mt: 2,
-            bgcolor: '#1565c0',
-            '&:hover': { bgcolor: '#0d47a1' },
-            px: 4,
-            py: 1.5,
-            fontSize: '1rem',
-            borderRadius: 3,
-          }}
-        >
-          Contact Us
-        </Button>
+        <Link href={'/contact'}>
+          <Button
+            variant="contained"
+            sx={{
+              mt: 2,
+              bgcolor: '#1565c0',
+              '&:hover': { bgcolor: '#0d47a1' },
+              px: 4,
+              py: 1.5,
+              fontSize: '1rem',
+              borderRadius: 3,
+            }}
+          >
+            Contact Us
+          </Button>
+        </Link>
       </Box>
     </Box>
   );

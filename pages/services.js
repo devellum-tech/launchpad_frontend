@@ -62,7 +62,7 @@ const services = [
 
 const ServicePage = () => {
   return (
-    <Box sx={{ backgroundColor: '#fafafa', pb: 8 }}>
+    <Box sx={{ backgroundColor: '#fafafa', pb: 8, width: '100%' }}>
       {/* Hero / Mission Section */}
       <Box
         sx={{

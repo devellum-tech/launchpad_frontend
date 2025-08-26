@@ -11,9 +11,11 @@ import {
   ListItemText,
   Button,
   Box,
+  Link as MuiLink,
 } from '@mui/material';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -33,7 +35,12 @@ const Navbar = () => {
       <AppBar position="static" color="transparent" elevation={0}>
         <Box
           sx={{
-            width: '86%',
+            width: '100%',
+            // width: {
+            //   xs: '100%', // 0px - 600px (mobile)
+            //   sm: '96%', // 600px - 900px
+            //   md: '86%', // 900px+
+            // },
             p: '10px 0px 10px 0px',
             mx: 'auto',
             // '@media (min-width: 900px)': {
@@ -44,7 +51,7 @@ const Navbar = () => {
           <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
             {/* Logo */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <Box
+              {/* <Box
                 sx={{
                   width: 40,
                   height: 40,
@@ -58,10 +65,38 @@ const Navbar = () => {
                 <Typography fontWeight="bold" fontSize="1.25rem" color="white">
                   D
                 </Typography>
+              </Box> */}
+              <Box
+                sx={{
+                  width: 60,
+                  height: 60,
+                  position: 'relative',
+                  backgroundColor: 'black',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  pl: '2px',
+                }}
+              >
+                <Image
+                  src="/logo.png"
+                  alt="Devellum Logo"
+                  width={30}
+                  height={30}
+                  style={{ objectFit: 'contain' }}
+                />
               </Box>
-              <Typography fontWeight="bold" fontSize="1.25rem">
-                <Link href={'/'}>Devellum</Link>
-              </Typography>
+
+              <MuiLink component={Link} href="/" underline="none">
+                <Typography
+                  fontWeight="bold"
+                  fontSize={{ xs: '1.5rem', md: '2rem' }}
+                  color="black"
+                >
+                  Devellum
+                </Typography>
+              </MuiLink>
             </Box>
 
             {/* Desktop Menu */}
@@ -81,23 +116,25 @@ const Navbar = () => {
                   {item}
                 </Button>
               ))}
-              <Button
-                variant="contained"
-                sx={{
-                  backgroundColor: '#000',
-                  borderRadius: '30px',
-                  color: '#fff',
-                  textTransform: 'none',
-                  fontSize: '1.05rem',
-                  px: 3,
-                  py: 1,
-                  '&:hover': {
-                    backgroundColor: '#222',
-                  },
-                }}
-              >
-                Get Started →
-              </Button>
+              <Link href={'/contact'}>
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: '#000',
+                    borderRadius: '30px',
+                    color: '#fff',
+                    textTransform: 'none',
+                    fontSize: '1.05rem',
+                    px: 3,
+                    py: 1,
+                    '&:hover': {
+                      backgroundColor: '#222',
+                    },
+                  }}
+                >
+                  Get Started →
+                </Button>
+              </Link>
             </Box>
 
             {/* Mobile Menu Icon */}
@@ -140,24 +177,26 @@ const Navbar = () => {
               </ListItem>
             ))}
             <ListItem>
-              <Button
-                fullWidth
-                variant="contained"
-                sx={{
-                  backgroundColor: '#000',
-                  borderRadius: '30px',
-                  color: '#fff',
-                  textTransform: 'none',
-                  fontSize: '1.05rem',
-                  px: 3,
-                  py: 1,
-                  '&:hover': {
-                    backgroundColor: '#222',
-                  },
-                }}
-              >
-                Get Started →
-              </Button>
+              <Link href={'/contact'}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  sx={{
+                    backgroundColor: '#000',
+                    borderRadius: '30px',
+                    color: '#fff',
+                    textTransform: 'none',
+                    fontSize: '1.05rem',
+                    px: 3,
+                    py: 1,
+                    '&:hover': {
+                      backgroundColor: '#222',
+                    },
+                  }}
+                >
+                  Get Started →
+                </Button>
+              </Link>
             </ListItem>
           </List>
         </Box>

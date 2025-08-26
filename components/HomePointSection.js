@@ -1,4 +1,5 @@
 import { Box, Typography, Button, Fade } from '@mui/material';
+import Link from 'next/link';
 
 const HomePointSection = () => {
   const points = [
@@ -37,7 +38,7 @@ const HomePointSection = () => {
   return (
     <Box
       sx={{
-        width: '100%',
+        maxWidth: '100%',
         background: 'linear-gradient(175deg, #ffffff, #f8f9fa)',
         py: { xs: 6, md: 10 },
         px: 2,
@@ -47,8 +48,7 @@ const HomePointSection = () => {
     >
       <Box
         sx={{
-          width: '100%',
-          maxWidth: '1100px',
+          maxWidth: '100%',
           display: 'flex',
           flexDirection: 'column',
           gap: 4,
@@ -114,42 +114,44 @@ const HomePointSection = () => {
 
         {/* CTA */}
         <Box mt={2}>
-          <Button
-            sx={{
-              px: 3,
-              py: 1.5,
-              backgroundColor: '#000',
-              borderRadius: '999px',
-              color: '#fff',
-              fontSize: '1rem',
-              fontWeight: 500,
-              textTransform: 'none',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 1.5,
-              '&:hover': {
-                backgroundColor: '#111',
-              },
-            }}
-          >
-            Get Started
-            <Box
+          <Link href={'/contact'}>
+            <Button
               sx={{
-                backgroundColor: '#d7fe52',
-                color: '#000',
-                width: 32,
-                height: 32,
-                borderRadius: '50%',
+                px: 3,
+                py: 1.5,
+                backgroundColor: '#000',
+                borderRadius: '999px',
+                color: '#fff',
+                fontSize: '1rem',
+                fontWeight: 500,
+                textTransform: 'none',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                fontWeight: 'bold',
-                fontSize: '1.25rem',
+                gap: 1.5,
+                '&:hover': {
+                  backgroundColor: '#111',
+                },
               }}
             >
-              →
-            </Box>
-          </Button>
+              Get Started
+              <Box
+                sx={{
+                  backgroundColor: '#d7fe52',
+                  color: '#000',
+                  width: 32,
+                  height: 32,
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontWeight: 'bold',
+                  fontSize: '1.25rem',
+                }}
+              >
+                →
+              </Box>
+            </Button>
+          </Link>
         </Box>
       </Box>
     </Box>

@@ -7,7 +7,7 @@ export default function Document() {
         <link
           href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400&f[]=satoshi@400&display=swap"
           rel="stylesheet"
-        ></link>{' '}
+        ></link>
       </Head>
       <body>
         <Main />

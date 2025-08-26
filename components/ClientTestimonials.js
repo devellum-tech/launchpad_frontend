@@ -49,30 +49,49 @@ const testimonials = [
   },
 ];
 
-const ClientTestimonials = () => {
-  const settings = {
-    infinite: true,
-    speed: 500,
-    autoplay: true,
-    autoplaySpeed: 2500,
-    slidesToShow: 2, // Show 2 at a time
-    slidesToScroll: 1,
-    arrows: false,
-    dots: false,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: { slidesToShow: 1 },
-      },
-    ],
-  };
+const settings = {
+  dots: false,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 2,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 2500,
+  centerMode: true, // <-- center the active slides
+  // centerPadding: '0px',
+  arrows: false,
+  responsive: [
+    {
+      breakpoint: 1536, // xl
+      settings: { slidesToShow: 2 },
+    },
+    {
+      breakpoint: 1200, // lg
+      settings: { slidesToShow: 2 },
+    },
+    {
+      breakpoint: 900, // md
+      settings: { slidesToShow: 2 },
+    },
+    {
+      breakpoint: 600, // sm
+      settings: { slidesToShow: 1 },
+    },
+    {
+      breakpoint: 0, // xs
+      settings: { slidesToShow: 1 },
+    },
+  ],
+};
 
+const ClientTestimonials = () => {
   return (
     <Box
       sx={{
         py: 8,
         background: 'linear-gradient(135deg, #1f1c2c, #928dab)',
         color: 'white',
+        maxWidth: '100%',
       }}
     >
       <Typography
@@ -85,13 +104,18 @@ const ClientTestimonials = () => {
         What Our Clients Say
       </Typography>
 
-      <Box sx={{ maxWidth: '94%', mx: 'auto' }}>
+      <Box
+        sx={{
+          maxWidth: '90%',
+          mx: 'auto',
+        }}
+      >
         <Slider {...settings}>
           {testimonials.map((t, i) => (
-            <Box key={i} px={2}>
+            <Box key={i} px={2} sx={{ display: 'flex', justifyContent: 'center', px: 1 }}>
               <Paper
                 sx={{
-                  p: 4,
+                  p: 2,
                   borderRadius: 3,
                   backgroundColor: 'white',
                   color: 'black',
@@ -99,7 +123,14 @@ const ClientTestimonials = () => {
                   flexDirection: 'column',
                   alignItems: 'center',
                   textAlign: 'center',
-                  height: 320, // fixed height for equal cards
+                  width: {
+                    xs: '86%',
+                    sm: '80%',
+                    md: '50%', // 2 cards will fit
+                    lg: '60%',
+                    xl: '70%',
+                  },
+                  minHeight: 320,
                   justifyContent: 'space-between',
                   transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                   '&:hover': {

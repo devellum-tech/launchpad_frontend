@@ -6,7 +6,7 @@ import ClientTestimonials from './ClientTestimonials';
 
 function Launch() {
   return (
-    <div>
+    <div style={{ width: '100%' }}>
       <h1 style={{ textAlign: 'center', fontSize: '70px' }}>Welcome to Devellum</h1>
       <HomeTop />
       <HomePointSection />

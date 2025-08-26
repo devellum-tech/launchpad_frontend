@@ -26,7 +26,10 @@ const Footer = () => {
               focus.
             </Typography>
 
-            <Typography variant="body1" sx={{ fontWeight: 1000, color: '#C0C0C0', m: 1 }}>
+            <Typography
+              variant="body1"
+              sx={{ fontWeight: 1000, color: '#C0C0C0', mb: 1 }}
+            >
               📧 devellum.tech@gmail.com
             </Typography>
 
@@ -84,17 +87,40 @@ const Footer = () => {
               Connect
             </Typography>
             <Stack direction="row" spacing={1}>
-              {[Facebook, Twitter, LinkedIn, Instagram].map((Icon, i) => (
+              {[
+                {
+                  name: 'Facebook',
+                  link: 'https://www.linkedin.com/company/devellum/',
+                  icon: Facebook,
+                },
+                {
+                  name: 'Twitter',
+                  link: 'https://www.linkedin.com/company/devellum/',
+                  icon: Twitter,
+                },
+                {
+                  name: 'LinkedIn',
+                  link: 'https://www.linkedin.com/company/devellum/',
+                  icon: LinkedIn,
+                },
+                {
+                  name: 'Instagram',
+                  link: 'https://www.linkedin.com/company/devellum/',
+                  icon: Instagram,
+                },
+              ].map((obj, i) => (
                 <IconButton
-                  key={Icon}
+                  key={obj.name}
                   size="small"
                   sx={{
                     bgcolor: '#1B263B',
                     color: '#C0C0C0',
                     '&:hover': { bgcolor: '#C0C0C0', color: '#0D1B2A' },
                   }}
+                  href={obj.link}
+                  target="_blank"
                 >
-                  <Icon fontSize="small" />
+                  <obj.icon fontSize="small" />
                 </IconButton>
               ))}
             </Stack>

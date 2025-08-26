@@ -1,8 +1,14 @@
 import Head from 'next/head';
 import { Geist, Geist_Mono } from 'next/font/google';
-import Launch from '@/components/Launch';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Loader from '@/components/Loader';
+import dynamic from 'next/dynamic';
+
+const Launch = dynamic(() => import('@/components/Launch'), {
+  ssr: false,
+  loading: () => <Loader />,
+});
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -21,7 +27,7 @@ export default function Home() {
         <title>Devellum</title>
         <meta name="description" content="Devellum" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logo.png" />
       </Head>
       <Launch />
     </div>

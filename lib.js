@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const options = {
-  url: 'https://dashboard.render.com/v1/contactUs/createContactUs',
+  baseURL: 'https://api.devellum.in/',
   withCredentials: true,
   timeout: 10000,
 };

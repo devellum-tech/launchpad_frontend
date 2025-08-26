@@ -10,27 +10,37 @@ import {
   InputLabel,
   FormControl,
 } from '@mui/material';
+import API from '@/lib';
+import ThankYou from '@/components/ThankYou';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
-    fname: '',
-    lname: '',
+    firstName: '',
+    lastName: '',
     email: '',
+    countryCode: '+91',
     phone: '',
-    compName: '',
-    compURL: '',
-    requirement: '',
+    companyName: '',
+    companyUrl: '',
+    subject: 'Project Query',
     budget: '',
-    hear: '',
-    msg: '',
+    referralSource: 'Social Media',
+    message: '',
+    location: '',
+    labels: ['new'],
+    tags: [],
+
+    assignee: null,
   });
   const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
 
   const validate = () => {
     let tempErrors = {};
 
-    if (!formData.fname.trim()) tempErrors.fname = 'First name is required';
-    if (!formData.lname.trim()) tempErrors.lname = 'Last name is required';
+    if (!formData.firstName.trim()) tempErrors.firstName = 'First name is required';
+    if (!formData.lastName.trim()) tempErrors.lastName = 'Last name is required';
+    if (!formData.countryCode.trim()) tempErrors.countryCode = 'country code is required';
     if (!formData.email.trim()) {
       tempErrors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
@@ -48,9 +58,20 @@ export default function ContactPage() {
     event.preventDefault();
 
     if (validate()) {
-      console.log('Form Submitted:', formData);
+      const payload = {
+        ...formData,
+        phoneNumber: formData.countryCode + formData.phone,
+        countryCode: undefined,
+        phone: undefined,
+      };
+
       // submit API call here
-      // const res =  await
+      const res = await API.post('v1/contactUs/createContactUs', payload);
+      // console.log(res);
+
+      if (res.ok) {
+        setSubmitted(true);
+      }
     } else {
       console.log('Validation failed');
     }
@@ -59,10 +80,9 @@ export default function ContactPage() {
   const handleChange = (e) => {
     validate();
 
-    console.log(e.target.value, e.target.name, 'yes');
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  console.log(formData);
+
   return (
     <Box sx={{ p: { xs: 2, md: 6 }, backgroundColor: '#fff' }}>
       <Grid container spacing={4} alignItems="flex-start" justifyContent="center">
@@ -102,172 +122,195 @@ export default function ContactPage() {
             </Typography>
           </Box>
         </Grid>
-
+        {submitted && <ThankYou onBack={() => setSubmitted(false)} />}
         {/* Right Section - Form */}
-        <Grid item xs={12} md={6}>
-          <Box
-            component="form"
-            sx={{
-              width: '100%',
-              maxWidth: '600px', // allow wider layout for desktop
-              margin: '0 auto',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 2,
-              backgroundColor: '#fafafa',
-              p: 3,
-              borderRadius: 2,
-              boxShadow: 1,
-            }}
-          >
-            {/* Name Fields */}
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  onChange={(e) => handleChange(e)}
-                  fullWidth
-                  label="First Name"
-                  name="fname"
-                  required
-                  placeholder="Your First Name"
-                  error={!!errors.fname}
-                  helperText={errors.fname}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  onChange={(e) => handleChange(e)}
-                  fullWidth
-                  label="Last Name"
-                  name="lname"
-                  required
-                  placeholder="Your Last Name"
-                  error={!!errors.lname}
-                  helperText={errors.lname}
-                />
-              </Grid>
-            </Grid>
-
-            {/* Email */}
-            <TextField
-              onChange={(e) => handleChange(e)}
-              fullWidth
-              label="Email"
-              type="email"
-              name="email"
-              required
-              placeholder="youremail@email.com"
-              error={!!errors.email}
-              helperText={errors.email}
-            />
-            <TextField
-              onChange={(e) => handleChange(e)}
-              fullWidth
-              label="Phone"
-              type="phone"
-              name="phone"
-              required
-              placeholder="Phone Number"
-              error={!!errors.phone}
-              helperText={errors.phone}
-            />
-
-            {/* Company Name */}
-            <TextField
-              onChange={(e) => handleChange(e)}
-              fullWidth
-              label="Company Name"
-              name="compName"
-              placeholder="Your Company Name"
-            />
-            <TextField
-              onChange={(e) => handleChange(e)}
-              fullWidth
-              label="Company URL"
-              name="compURL"
-              // required
-              placeholder="Your Company URL"
-            />
-            <TextField
-              onChange={(e) => handleChange(e)}
-              fullWidth
-              label="City"
-              name="city"
-              // required
-              placeholder="City"
-            />
-
-            <FormControl fullWidth>
-              <InputLabel id="Requirement">Requirement</InputLabel>
-              <Select
-                onChange={(e) => handleChange(e)}
-                labelId="Requirement"
-                id="Requirement"
-                name="requirement"
-                value={formData.requirement}
-                label="Requirement"
-              >
-                <MenuItem value={'General Inquiry'}>General Inquiry</MenuItem>
-                <MenuItem value={'Partnership'}>Partnership</MenuItem>
-                <MenuItem value={'Project Quote'}>Project Quote</MenuItem>
-                <MenuItem value={'Support'}>Support</MenuItem>
-              </Select>
-            </FormControl>
-            <FormControl fullWidth>
-              <InputLabel id="budget">Budget</InputLabel>
-              <Select
-                onChange={(e) => handleChange(e)}
-                labelId="budget"
-                id="budget"
-                name="budget"
-                value={formData.budget}
-                label="budget"
-              >
-                <MenuItem value={'<1000'}>less than $1,000</MenuItem>
-                <MenuItem value={'1000-5000'}>$1,000 – $5,000</MenuItem>
-                <MenuItem value={'5000+'}>$5,000+</MenuItem>
-              </Select>
-            </FormControl>
-
-            <FormControl fullWidth>
-              <InputLabel id="Hear-about-us">Hear About Us</InputLabel>
-              <Select
-                onChange={(e) => handleChange(e)}
-                labelId="Hear-about-us"
-                id="Hear"
-                name="hear"
-                value={formData.hear}
-                label="Hear About Us"
-              >
-                <MenuItem value={'Google'}>Google</MenuItem>
-                <MenuItem value={'Referral'}>Referral</MenuItem>
-                <MenuItem value={'Social Media'}>Social Media</MenuItem>
-                <MenuItem value={'Others'}>Others</MenuItem>
-              </Select>
-            </FormControl>
-
-            {/* Message Field */}
-            <TextField
-              onChange={(e) => handleChange(e)}
-              fullWidth
-              label="Message"
-              name="msg"
-              placeholder="Write your message here..."
-              multiline
-              rows={4}
-            />
-
-            {/* Submit Button */}
-            <Button
-              variant="contained"
-              sx={{ mt: 1, backgroundColor: '#1976d2' }}
-              size="large"
-              onClick={(e) => handleSubmit(e)}
+        {!submitted && (
+          <Grid item xs={12} md={6}>
+            <Box
+              component="form"
+              sx={{
+                width: '100%',
+                maxWidth: '600px', // allow wider layout for desktop
+                margin: '0 auto',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 2,
+                backgroundColor: '#fafafa',
+                p: 3,
+                borderRadius: 2,
+                boxShadow: 1,
+              }}
             >
-              Submit
-            </Button>
-          </Box>
-        </Grid>
+              {/* Name Fields */}
+              <Grid container spacing={2}>
+                <Grid item>
+                  <TextField
+                    onChange={(e) => handleChange(e)}
+                    fullWidth
+                    label="First Name"
+                    name="firstName"
+                    required
+                    placeholder="Your First Name"
+                    error={!!errors.firstName}
+                    helperText={errors.firstName}
+                  />
+                </Grid>
+                <Grid item>
+                  <TextField
+                    onChange={(e) => handleChange(e)}
+                    fullWidth
+                    label="Last Name"
+                    name="lastName"
+                    required
+                    placeholder="Your Last Name"
+                    error={!!errors.lastName}
+                    helperText={errors.lastName}
+                  />
+                </Grid>
+              </Grid>
+
+              {/* Email */}
+              <TextField
+                onChange={(e) => handleChange(e)}
+                fullWidth
+                label="Email"
+                type="email"
+                name="email"
+                required
+                placeholder="youremail@email.com"
+                error={!!errors.email}
+                helperText={errors.email}
+              />
+
+              <Grid container spacing={2}>
+                {/* Country Code - 4/12 on md+ */}
+                <Grid item xs={12} md={4}>
+                  <TextField
+                    onChange={handleChange}
+                    fullWidth
+                    label="Country Code"
+                    name="countryCode"
+                    required
+                    placeholder="Country Code"
+                    error={!!errors.countryCode}
+                    helperText={errors.countryCode}
+                    value={formData.countryCode}
+                  />
+                </Grid>
+
+                {/* Phone Number - 8/12 on md+ */}
+                <Grid item xs={12} md={8}>
+                  <TextField
+                    onChange={handleChange}
+                    fullWidth
+                    label="Phone"
+                    type="tel"
+                    name="phone"
+                    required
+                    placeholder="Phone Number"
+                    error={!!errors.phone}
+                    helperText={errors.phone}
+                  />
+                </Grid>
+              </Grid>
+
+              {/* Company Name */}
+              <TextField
+                onChange={(e) => handleChange(e)}
+                fullWidth
+                label="Company Name"
+                name="companyName"
+                placeholder="Your Company Name"
+              />
+              <TextField
+                onChange={(e) => handleChange(e)}
+                fullWidth
+                label="Company URL"
+                name="companyUrl"
+                // required
+                placeholder="Your Company URL"
+              />
+              <TextField
+                onChange={(e) => handleChange(e)}
+                fullWidth
+                label="Address"
+                name="location"
+                // required
+                placeholder="Address"
+              />
+
+              <FormControl fullWidth>
+                <InputLabel id="Requirement">Requirement</InputLabel>
+                <Select
+                  onChange={(e) => handleChange(e)}
+                  labelId="Requirement"
+                  id="Requirement"
+                  name="subject"
+                  value={formData.subject}
+                  label="Requirement"
+                >
+                  <MenuItem value={'General Inquiry'}>General Inquiry</MenuItem>
+                  <MenuItem value={'Partnership'}>Partnership</MenuItem>
+                  <MenuItem value={'Project Query'}>Project Query</MenuItem>
+                  <MenuItem value={'Support'}>Support</MenuItem>
+                </Select>
+              </FormControl>
+              <FormControl fullWidth>
+                <InputLabel id="budget">Budget</InputLabel>
+                <Select
+                  onChange={(e) => handleChange(e)}
+                  labelId="budget"
+                  id="budget"
+                  name="budget"
+                  value={formData.budget}
+                  label="budget"
+                >
+                  <MenuItem value={'<1000'}>less than $1,000</MenuItem>
+                  <MenuItem value={'1000-5000'}>$1,000 – $5,000</MenuItem>
+                  <MenuItem value={'5000+'}>$5,000+</MenuItem>
+                </Select>
+              </FormControl>
+
+              <FormControl fullWidth>
+                <InputLabel id="Hear-about-us">Hear About Us</InputLabel>
+                <Select
+                  onChange={(e) => handleChange(e)}
+                  labelId="Hear-about-us"
+                  id="Hear"
+                  name="referralSource"
+                  value={formData.referralSource}
+                  label="Hear About Us"
+                >
+                  <MenuItem value={'Google'}>Google</MenuItem>
+                  <MenuItem value={'Referral'}>Referral</MenuItem>
+                  <MenuItem value={'Social Media'}>Social Media</MenuItem>
+                  <MenuItem value={'Others'}>Others</MenuItem>
+                </Select>
+              </FormControl>
+
+              {/* Message Field */}
+              <TextField
+                onChange={(e) => handleChange(e)}
+                fullWidth
+                label="Message"
+                name="message"
+                placeholder="Write your message here..."
+                multiline
+                rows={4}
+              />
+
+              {/* Submit Button */}
+              <Button
+                variant="contained"
+                sx={{ mt: 1, backgroundColor: '#1976d2' }}
+                size="large"
+                onClick={(e) => handleSubmit(e)}
+              >
+                Submit
+              </Button>
+            </Box>
+          </Grid>
+        )}
       </Grid>
     </Box>
   );
